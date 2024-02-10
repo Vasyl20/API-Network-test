@@ -3,7 +3,8 @@ pip library
 ```bash
 pip install Django==4.2
 pip install djangorestframework
-pip install speedtest-cli 
+pip install speedtest-cli
+pip install django-cors-headers 
 ```
 
 Start Server
