@@ -6,7 +6,7 @@ pip install djangorestframework
 pip install speedtest-cli
 pip install django-cors-headers
 ```
-
+////
 Start Server
 ```bash 
 python manage.py runserver 
