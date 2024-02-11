@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import NetworkTestResult
 from .serializers import NetworkTestResultSerializer
+from rest_framework.decorators import api_view
 import speedtest
 
 class NetworkTestView(APIView):
@@ -78,3 +79,15 @@ class NetworkTestView(APIView):
             avg_upload_speed=avg_upload,
             ping=ping
         )
+
+class LastTestResultsView(APIView):
+    def get(self, request, *args, **kwargs):
+        try:
+            # Отримання останніх 5 результатів тестування з бази даних
+            test_results = NetworkTestResult.objects.all().order_by('-created_at')[:5]
+            serializer = NetworkTestResultSerializer(test_results, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
