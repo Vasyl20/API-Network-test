@@ -41,6 +41,7 @@ INSTALLED_APPS = [
      
     'corsheaders',
     'rest_framework',
+    'network_test_app',
 ]
 
 MIDDLEWARE = [
